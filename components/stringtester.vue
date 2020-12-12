@@ -25,25 +25,35 @@
       :error-messages="bnf.testingError"
       @input="ontestStringChanged"
       :background-color="bgColor"
+      :append-outer-icon="icon"
     ></v-textarea>
     <div class="d-flex ">
       <v-btn class="" @click="onGenerate"
         >Generate random <{{ bnf.selectedNonTerminal }}></v-btn
       >
     </div>
+    <div class="mt-2"><testinghelp /></div>
   </div>
 </template>
 <script lang="ts">
 import { Vue, Component, Prop } from "vue-property-decorator";
 import BNFController, { compilationStatus } from "~/ts/BNFController.ts";
+import testinghelp from "~/components/testinghelp.vue";
 const _bnf = BNFController.getInstance();
-@Component
+@Component({ components: { testinghelp } })
 export default class StringTester extends Vue {
   bnf = _bnf;
   str: string = "";
   selection: string = "";
   get items() {
     return this.bnf.nonTerminals.map(x => "<" + x + ">");
+  }
+  get icon(): string {
+    if (this.isError) {
+      return "mdi-alert-box-outline";
+    } else {
+      return "mdi-check-bold";
+    }
   }
   mounted() {
     this.bnf.triggerSelection = this.triggerSelection;

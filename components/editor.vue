@@ -1,7 +1,12 @@
 <template>
   <div>
     <div id="editbnf">
-      <v-text-field label="Grammar Title"></v-text-field>
+      <v-text-field
+        class="large pb-3"
+        height="1.5em"
+        label="Grammar Title"
+        v-model="title"
+      ></v-text-field>
       <div>Enter your BNF (or EBNF) below.</div>
       <div>
         <div
@@ -12,7 +17,7 @@
           @mouseup="onCodeSizeMouseUp($event.srcElement)"
           @mousedown="onCodeSizeMouseDown($event.srcElement)"
           ref="code-mirror-holder"
-          @keydown.ctrl.83.prevent="bnfsubmitted"
+          @keydown.ctrl.83.prevent="ctrlS"
         >
           <textarea rows="20" cols="50" id="textinput" ref="editor">
 <gpa> ::= "4.0" | <leading> "." <trailing>
@@ -25,16 +30,23 @@
             >Compile BNF</v-btn
           >
           <v-alert dense :type="type" :color="color">{{ status }}</v-alert>
+          <v-spacer />
+          <v-tooltip bottom>
+            <template v-slot:activator="{ on, attrs }">
+              <v-btn v-bind="attrs" v-on="on" @click="saveAsURL">
+                Save BNF as URL
+              </v-btn>
+            </template>
+            <span
+              >Encodes your BNF to the current URL so you can bookmark it for
+              later.</span
+            >
+          </v-tooltip>
         </div>
       </div>
       <v-alert v-if="error" color="red" type="error"
         ><pre>{{ error }}</pre></v-alert
       >
-      <div
-        id="bnferror"
-        style="font-family: 'Courier New', Courier, monospace"
-        class="w3-red"
-      ></div>
     </div>
   </div>
 </template>
@@ -44,14 +56,14 @@ import { Vue, Component, Prop } from "vue-property-decorator";
 const bnfmode = require("codemirror/mode/ebnf/ebnf.js");
 import BNFController, { compilationStatus } from "~/ts/BNFController.ts";
 const bnf = BNFController.getInstance();
-// console.log("bnfmode", bnfmode);
-// (window as any).bnfmode = bnfmode;
+
 const anyhint = require("codemirror/addon/hint/anyword-hint.js");
 const showhint = require("codemirror/addon/hint/show-hint.js");
 @Component
 export default class Editor extends Vue {
   bnf = bnf; //this must be assigned as prop for reactivity.
   compilationEnum = compilationStatus;
+  title: string = "";
   get status() {
     return this.bnf.compilationStatus; //must be done this way for reactivity.
   }
@@ -87,6 +99,11 @@ export default class Editor extends Vue {
     this.isMounted = true;
     console.log("editor mounted");
     this.initializeBNFEditor();
+    this.loadGetBNF();
+    window.onpopstate = this.loadGetBNF;
+  }
+  beforeDestroy() {
+    window.onpopstate = null;
   }
   initializeBNFEditor() {
     this.editor = codemirror.fromTextArea(
@@ -108,9 +125,44 @@ export default class Editor extends Vue {
       me.bnf.currentSourceCode = me.editor.getDoc().getValue();
     });
   }
+  loadGetBNF() {
+    let ustr = window.location.href;
+    let url = new URL(ustr);
+    let bnf = url.searchParams.get("bnf");
+    let tit = url.searchParams.get("name");
+    if (bnf) {
+      console.log("bnf is here! it should be: ", decodeURIComponent(bnf));
+      // setEnteredCode(decodeURIComponent(bnf));
+      this.editor.getDoc().setValue(decodeURIComponent(bnf));
+      this.title = tit ? tit : "";
+    }
+    console.log(bnf);
+  }
+  saveAsURL() {
+    const url = this.generateSaveURL();
+    window.history.pushState({}, "", url);
+  }
+  generateSaveURL() {
+    const enteredText = this.editor.getDoc().getValue();
+    const encoded = encodeURIComponent(enteredText);
+    const tit = encodeURIComponent(this.title);
+    const str =
+      window.location.origin +
+      window.location.pathname +
+      "?bnf=" +
+      encoded +
+      "&name=" +
+      tit;
+    console.log(str);
+    return str;
+  }
   bnfsubmitted() {
     let enteredText = this.editor.getDoc().getValue();
     bnf.bnfsubmitted(enteredText);
+  }
+  ctrlS() {
+    this.bnfsubmitted();
+    this.saveAsURL();
   }
   //to be called when resizing code window.
   onCodeSizeMouseDown(ths: any) {
@@ -165,5 +217,8 @@ export default class Editor extends Vue {
 }
 .light-gray {
   color: gray;
+}
+.large {
+  font-size: 2em;
 }
 </style>

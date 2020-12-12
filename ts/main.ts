@@ -10,7 +10,7 @@
 // const bnfmode = require("codemirror/mode/ebnf/ebnf.js");
 // const anyhint = require("codemirror/addon/hint/anyword-hint.js");
 // const showhint = require("codemirror/addon/hint/show-hint.js");
-const nearleygen = require("nearley-generator");
+// const nearleygen = require("nearley-generator");
 // import nearleygen from "nearley-generator";
 
 const global: any = {};
@@ -157,8 +157,8 @@ function generateSaveURL() {
 //   console.log("here is my compiled grammar: ", compiledgrammar);
 //   return true;
 // }
-global.bnfsubmitted = bnfsubmitted; //need this scope for button click entry.
-global.onGenerate = onGenerate;
+// global.bnfsubmitted = bnfsubmitted; //need this scope for button click entry.
+// global.onGenerate = onGenerate;
 
 // function onGenerate() {
 //   if (isCompiled() || bnfsubmitted()) {
@@ -217,11 +217,11 @@ global.onGenerate = onGenerate;
 //   console.log(testString);
 //   console.log(parser.results); // [[[[ "foo" ],"\n" ]]]
 // }
-global.validityTest = validityTest; //need this scope for button click entry.
+// global.validityTest = validityTest; //need this scope for button click entry.
 
-function ontestStringChanged(obj) {
-  validityTest();
-}
+// function ontestStringChanged(obj) {
+//   validityTest();
+// }
 global.ontestStringChanged = ontestStringChanged;
 function parseTreeToNearley(data) {
   if (data == null) {
@@ -269,15 +269,15 @@ function parseTreeToNearley(data) {
   return "" + data;
 }
 
-function initState() {
-  let state = {};
-  state.nearley = "";
-  state.inruleleftList = [];
-  state.inrulerightSet = new Set();
-  state.left = null;
-  console.log("initing state:", state);
-  return state;
-}
+// function initState() {
+//   let state = {};
+//   state.nearley = "";
+//   state.inruleleftList = [];
+//   state.inrulerightSet = new Set();
+//   state.left = null;
+//   console.log("initing state:", state);
+//   return state;
+// }
 // //check the defined or nots while we traverse the tree.
 //
 //state.inruleleftList;
@@ -377,19 +377,19 @@ function initState() {
 //   //console.log("onchange event",myself,changeObj);
 //   getCompilationStatus().innerText = compilationStatus.modified;
 // }
-function getCompilationStatus() {
-  return document.getElementById("compilationStatus");
-}
+// function getCompilationStatus() {
+//   return document.getElementById("compilationStatus");
+// }
 // function isCompiled() {
 //   return getCompilationStatus().innerText == compilationStatus.good;
 // }
 
-const compilationStatus = {
-  good: "All good!",
-  error: "Error",
-  modified: "uncompiled",
-  compiling: "compiling.."
-};
+// const compilationStatus = {
+//   good: "All good!",
+//   error: "Error",
+//   modified: "uncompiled",
+//   compiling: "compiling.."
+// };
 // global.state = {}; //which will hold our bnf and parse info.
 // initializeBNFEditor();
 // console.log("main has loaded!!!");
@@ -432,9 +432,9 @@ function getGrammarName() {
 // function getEnteredCode() {
 //   return editor.doc.getValue();
 // }
-function setEnteredCode(str) {
-  editor.doc.setValue(str);
-}
+// function setEnteredCode(str) {
+//   editor.doc.setValue(str);
+// }
 function getTestString() {
   return document.getElementById("testinput").value;
 }
