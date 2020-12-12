@@ -1,5 +1,5 @@
 <template>
-     <v-expansion-panels accordion>
+     <v-expansion-panels accordion focusable>
       <v-expansion-panel >
         <v-expansion-panel-header>Grammar Help</v-expansion-panel-header>
         <v-expansion-panel-content>
@@ -22,7 +22,7 @@
                     <li>"<span class="code">(</span>" "<span class="code">)</span>" can be used to group elements. For example, <span class="code">&lt;e&gt; ::= ([1-9] [a-z])+</span> allows strings such as: <span class="code">1a, 4f, 4g3f9d,</span> etc.</li>
                     <li>Inside parentheticals, you may also indicate choice by "<span class="code">|</span>". For example, <span class="code">&lt;e&gt; ::= ([1-9] | [a-z])+</span> allows strings such as: <span class="code">2, 3553, 1ffvv2, ggg</span>, etc.</li>
                     <li>Note: EBNF symbols must touch the element(s) they are grouping. valid:<span class="code">( [1-9]? | [a-z] )+</span> invalid: <span class="code">( [1-9] || [a-z] ) +</span>. </li>
-                    <li>Check out the short <a href="#"><span onclick="document.getElementById('realnumberexample').click()">Real Numbers example</span></a> to see all these EBNF tricks in action.</li>
+                    <li>Check out the short <a :href="'/' + realLink"><span>Real Numbers example</span></a> to see all these EBNF tricks in action.</li>
                 </ul>
 
             </li>
@@ -49,8 +49,10 @@
 </template>
 <script lang="ts">
 import { Vue, Component, Prop } from "vue-property-decorator";
+import examples from "~/ts/examples.ts"
 @Component
 export default class GrammarHelp extends Vue {
+    realLink :string = examples.find(x => x.title == "Real Numbers")?.link || ""
   
 }
 </script>

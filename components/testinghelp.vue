@@ -1,5 +1,5 @@
 <template>
-     <v-expansion-panels accordion>
+     <v-expansion-panels accordion focusable>
       <v-expansion-panel >
         <v-expansion-panel-header>Testing Help</v-expansion-panel-header>
         <v-expansion-panel-content>
@@ -7,8 +7,8 @@
     <ul>
         <li> Once you compile your BNF, you can test strings for validity by typing them in the box above. Whatever non-terminal is selected in the "Test against non-terminal" dropdown is what will be used to judge the string.
         </li>
-        <li>You can easily test different terms of your BNF by selecting a different non-terminal from the dropdown</li>
-        <li><span class="green">Green</span> indicates a valid string; <span class="red">red</span> indicates invalid.</li>
+        <li>You can easily test different terms of your BNF by selecting a different non-terminal from the dropdown.</li>
+        <li><span class="green">Green</span> indicates a valid string; <span class="red">red</span> indicates invalid. Alternatively, a <v-icon>mdi-check-bold</v-icon>checkbox (valid) or <v-icon>mdi-alert-box-outline</v-icon> exclamation point (invalid) is also displayed for the 'color challenged' like myself.</li>
         <li>You can also generate random strings for any term in your definition.</li>
     </ul>
                   

@@ -3,7 +3,7 @@ const bnfgrammar = require("./bnfgrammar.js");
 const nearleyGrammar = require("nearley/lib/nearley-language-bootstrapped");
 const compile = require("nearley/lib/compile");
 const generate = require("nearley/lib/generate");
-const nearleygen = require("nearley-generator");
+const nearleygen = require("nearley-generator"); //no types available as of 12/12/2020
 type State = {
   nearley: string;
   inruleleftList: any[];

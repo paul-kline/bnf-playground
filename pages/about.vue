@@ -2,16 +2,20 @@
   <div class="container">
     <div>
       The BNF Playground is built on the
-      <a href="https://nearley.js.org">Nearley Parser</a>. The grammar for BNF
-      was written and compiled in nearley.js (greatly with the aid of the
-      <a href="https://omrelli.ug/nearley-playground/">nearley playground</a>).
-      Your entered specification is then parsed using this definition, followed
-      by basic semantic analysis (are all non-terminals defined exactly once?)
-      If all is well, the grammar is then transpiled into a nearley.js
+      <a target="_blank" href="https://nearley.js.org">Nearley Parser</a>. The
+      grammar for BNF was written and compiled in nearley.js (greatly with the
+      aid of the
+      <a target="_blank" href="https://omrelli.ug/nearley-playground/"
+        >nearley playground</a
+      >). Your entered specification is then parsed using this definition,
+      followed by basic semantic analysis (are all non-terminals defined exactly
+      once?) If all is well, the grammar is then transpiled into a nearley.js
       specification which is in turn compiled into a nearley grammar which is
       used for string testing. String generation is provided by cemulate from
       his git project
-      <a href="https://github.com/cemulate/nearley-generator">here</a>.
+      <a target="_blank" href="https://github.com/cemulate/nearley-generator"
+        >here</a
+      >.
     </div>
     <div class="mt-2">
       Problems, suggestions, or thanks can be emailed to pauliankline [(at)]
@@ -20,7 +24,8 @@
 
     <v-card class="mt-2 card" id="donate">
       <v-card-title>
-        I really like this site and have too much money. Take some!
+        "I really like this project & think you deserve some of my money for
+        your time!" --You
       </v-card-title>
       <v-card-actions>
         <form
