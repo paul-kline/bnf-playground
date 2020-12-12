@@ -29,7 +29,7 @@
     ></v-textarea>
     <div class="d-flex ">
       <v-btn class="" @click="onGenerate"
-        >Generate random <{{ bnf.selectedNonTerminal }}></v-btn
+        >Generate random &lt;{{ bnf.selectedNonTerminal }}&gt;</v-btn
       >
     </div>
     <div class="mt-2"><testinghelp /></div>

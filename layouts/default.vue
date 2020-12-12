@@ -46,7 +46,7 @@ import { Vue, Component, Prop } from "vue-property-decorator";
 export default class DefaultClass extends Vue {
   items = examples;
   get home() {
-    return window.location.origin + window.location.pathname;
+    return window.location.origin;
   }
 }
 </script>
