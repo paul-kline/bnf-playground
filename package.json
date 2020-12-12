@@ -1,0 +1,38 @@
+{
+  "name": "bnf-playground2",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt-ts",
+    "build": "nuxt-ts build",
+    "start": "nuxt-ts start",
+    "generate": "nuxt-ts generate",
+    "test": "jest"
+  },
+  "browser": { "fs": false, "path": false, "os": false},
+  "dependencies": {
+    "@nuxt/typescript-runtime": "^2.0.0",
+    "@nuxtjs/axios": "^5.12.2",
+    "@nuxtjs/pwa": "^3.0.2",
+    "@types/codemirror": "0.0.100",
+    "@types/nearley": "^2.11.1",
+    "codemirror": "^5.58.3",
+    "core-js": "^3.6.5",
+    "nearley": "^2.19.9",
+    "nearley-generator": "^1.0.3",
+    "nuxt": "^2.14.6",
+    "vue-class-component": "^7.2.6",
+    "vue-property-decorator": "^9.1.2"
+  },
+  "devDependencies": {
+    "@nuxt/types": "^2.14.6",
+    "@nuxt/typescript-build": "^2.0.3",
+    "@nuxtjs/vuetify": "^1.11.2",
+    "@vue/test-utils": "^1.1.0",
+    "babel-core": "7.0.0-bridge.0",
+    "babel-jest": "^26.5.0",
+    "jest": "^26.5.0",
+    "ts-jest": "^26.4.1",
+    "vue-jest": "^3.0.4"
+  }
+}
