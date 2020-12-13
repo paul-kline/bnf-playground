@@ -1,6 +1,10 @@
 import colors from 'vuetify/es5/util/colors'
 import myicon from './components/icon.vue'
 export default {
+  googleAnalytics: {
+    // Options
+    id:'ca-pub-0366164249167912'
+  }
   // Disable server-side rendering (https://go.nuxtjs.dev/ssr-mode)
   ssr: false,
 
@@ -40,6 +44,7 @@ export default {
     '@nuxt/typescript-build',
     // https://go.nuxtjs.dev/vuetify
     '@nuxtjs/vuetify',
+    '@nuxtjs/google-analytics'
   ],
 
   // Modules (https://go.nuxtjs.dev/config-modules)

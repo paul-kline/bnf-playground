@@ -62,7 +62,6 @@ export default class StringTester extends Vue {
     this.str = this.bnf.onGenerate(this.str);
   }
   triggerSelection(newval: any) {
-    console.log("triggerSelection", newval, this.selection);
     if (!this.selection) this.selection = this.items[0];
     const str = newval ? newval : this.selection;
     this.selection = str;
@@ -76,7 +75,6 @@ export default class StringTester extends Vue {
     if (this.str.length == 0) {
       this.bnf.testingError = "";
     }
-    console.log(this.str);
   }
   get isError(): boolean {
     return this.str.length > 0 && !this.bnf.validityTest(this.str);

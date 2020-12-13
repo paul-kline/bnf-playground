@@ -37,7 +37,7 @@ export default class BNFController {
   selectedNonTerminal: string = ""; //stringtester.vue sets this. It is needed here for the validitytest.
 
   /**
-   * This function does or calls all the interesting bnf compilation stuff.
+   * This function does (or calls) all the interesting bnf compilation stuff.
    * It is called when the user clicks 'compile grammar'
    * @param grammar The entered grammar
    */
@@ -59,10 +59,7 @@ export default class BNFController {
       this.compilationStatus = "Error";
       return;
     }
-    // populateSelector(teststate.inruleleftList);
-    console.log("before:", this.selectedNonTerminal);
     this.nonTerminals = teststate.inruleleftList;
-    console.log("before2:", this.selectedNonTerminal);
     if (this.triggerSelection)
       this.triggerSelection(
         "<" +
@@ -71,15 +68,11 @@ export default class BNFController {
             this.nonTerminals[0]) +
           ">"
       ); //I have no idea why I have to pass this here, but I do or it resets to selecting top item
-    console.log("after:", this.selectedNonTerminal);
 
     let nearleycode = teststate.nearley;
     console.log("STATE RESULT:", teststate);
     console.log("transcompilation result:\n", nearleycode);
     let compiledgrammar = compileGrammar(nearleycode);
-    //if we made it here, let's save the state.
-    // this.state.enteredText = enteredText;
-    // this.state.parseTree = parseTree; //do I need this?
     this.state.nearleycode = nearleycode;
     this.state.compiledgrammar = compiledgrammar;
     console.log("here is my compiled grammar: ", compiledgrammar);
@@ -98,7 +91,6 @@ export default class BNFController {
       .map(x => x.trim())
       .join("\n")
       .trim();
-    // str = str.trim();
     this.bnfError = "";
     this.compilationStatus = compilationStatus.compiling;
 
@@ -106,13 +98,12 @@ export default class BNFController {
     try {
       this.bnfParser.feed(str);
       // parser.results is an array of possible parsings.
-      console.log(this.bnfParser.results); // [[[[ "foo" ],"\n" ]]]
-      console.log(this.bnfParser);
+      console.log("bnfparser results", this.bnfParser.results); // [[[[ "foo" ],"\n" ]]]
+      console.log("bnfparser", this.bnfParser);
       if (this.bnfParser.results.length == 0) {
         throw new Error("General Error: Sorry I couldn't be more specific!");
       }
       this.compilationStatus = compilationStatus.good;
-      console.log("compilation status: " + this.compilationStatus);
       return this.bnfParser.results[0];
       //okay,things went well, let's compile the grammar!
     } catch (e) {
@@ -187,7 +178,6 @@ export default class BNFController {
         } else {
           this.state.inrulerightSet.add(tree.value);
         }
-        // console.log("on ident,", state);
         return this.state;
       }
       if (tree.type == "esym") {
@@ -209,7 +199,6 @@ export default class BNFController {
    * @param testString the string to test against.
    */
   validityTest(testString: string): boolean {
-    console.log("VALIDITY TEST");
     this.testingError = "";
     if (this.compilationStatus != compilationStatus.good) {
       //you need to compile your grammar first!
@@ -220,7 +209,6 @@ export default class BNFController {
     if (!this.state.compiledgrammar) return false;
     const grammar = nearley.Grammar.fromCompiled(this.state.compiledgrammar);
     if (this.selectedNonTerminal) {
-      console.log("setting start to: ", this.selectedNonTerminal);
       grammar.start = this.selectedNonTerminal;
     }
     let parser = new nearley.Parser(grammar);
@@ -273,7 +261,6 @@ export default class BNFController {
     term: string,
     rate: number
   ): string {
-    console.log("nearleygen:", nearleygen);
     let g = new nearleygen.default(jsgrammar);
     let r = g.generate(term, rate);
     return r;
@@ -344,7 +331,7 @@ function compileGrammar(
   // Pretend this is a CommonJS environment to catch exports from the grammar.
   const module = { exports: {} };
   eval(grammarJs);
-  console.log("result of compileGrammar");
+
   //@ts-ignore
   return module.exports;
 }
