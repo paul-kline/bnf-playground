@@ -12,6 +12,10 @@ type State = {
   nearleycode?: string;
   compiledgrammar?: nearley.CompiledRules;
 };
+/**
+ * This class is the main brains of it all. Some oddities exist as a bit of a hack to
+ * easily share state across components.
+ */
 export default class BNFController {
   static _instance: null | BNFController = null;
   static getInstance(): BNFController {
@@ -28,7 +32,7 @@ export default class BNFController {
   );
   state: State = initState();
   nonTerminals: string[] = []; //used to populate selector in stringtester.vue
-  currentSourceCode: string = ""; //for string testing, this needs to be shared. updated on editor change.
+  currentSourceCode: string = ""; //for single click string gen testing, this needs to be shared. updated on editor change.
   triggerSelection: any; //stringtester.vue sets this as a function which auto-selects the first non-terminal when compilation is triggered.
   selectedNonTerminal: string = ""; //stringtester.vue sets this. It is needed here for the validitytest.
 

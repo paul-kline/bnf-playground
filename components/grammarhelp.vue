@@ -31,6 +31,8 @@
     </p>
     <p><strong>Life Hacks:</strong>
         <ul>
+            <li>The special symbol backslash (\) can only be a valid terminal when escaped: <span class="code">&lt;backslash&gt; ::= "\\"</span></li>
+            <li>The special symbol double quote (") can only be a valid terminal when escaped: <span class="code">&lt;word&gt; ::= "\"" [a-z]+ "\""</span></li>
             <li>
                 Basic textual auto-complete is available via ctrl+space.
             </li>

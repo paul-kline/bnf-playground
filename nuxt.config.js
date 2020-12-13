@@ -1,5 +1,5 @@
 import colors from 'vuetify/es5/util/colors'
-
+import myicon from './components/icon.vue'
 export default {
   // Disable server-side rendering (https://go.nuxtjs.dev/ssr-mode)
   ssr: false,
@@ -11,7 +11,12 @@ export default {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' }
+      { hid: 'description', name: 'description', content: 'Define and Test BNF or EBNF definitions as well as randomly generate valid strings.' },
+      {name:"author", content:"Paul Kline"},
+      {name:"keywords", content:"online BNF parser,online EBNF parser,Backus Naur Form, Extended Backus Naur Form, online BNF code editor, BNF playground,online EBNF interpreter"}
+
+
+      
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }

@@ -13,9 +13,9 @@
 // const nearleygen = require("nearley-generator");
 // import nearleygen from "nearley-generator";
 
-const global: any = {};
-global.nearleygen = nearleygen;
-global.CodeMirror = codemirror;
+// const global: any = {};
+// global.nearleygen = nearleygen;
+// global.CodeMirror = codemirror;
 // function compileGrammar(sourceCode: string) {
 //   // Parse the grammar source into an AST
 //   const grammarParser = new nearley.Parser(nearleyGrammar);
@@ -104,29 +104,29 @@ global.CodeMirror = codemirror;
 //   return result;
 // }
 
-function populateSelector(arr) {
-  let d = document.getElementById("selector");
-  console.log(d);
-  let str = "";
-  arr.forEach(e => {
-    str += "<option value='" + e + "'>&lt" + e + "&gt</option>";
-  });
-  d.innerHTML = str;
-}
+// function populateSelector(arr) {
+//   let d = document.getElementById("selector");
+//   console.log(d);
+//   let str = "";
+//   arr.forEach(e => {
+//     str += "<option value='" + e + "'>&lt" + e + "&gt</option>";
+//   });
+//   d.innerHTML = str;
+// }
 
-function generateSaveURL() {
-  let enteredText = getEnteredCode();
-  let encoded = encodeURIComponent(enteredText);
-  let tit = encodeURIComponent(getGrammarName());
-  return (
-    window.location.origin +
-    window.location.pathname +
-    "?bnf=" +
-    encoded +
-    "&name=" +
-    tit
-  );
-}
+// function generateSaveURL() {
+//   let enteredText = getEnteredCode();
+//   let encoded = encodeURIComponent(enteredText);
+//   let tit = encodeURIComponent(getGrammarName());
+//   return (
+//     window.location.origin +
+//     window.location.pathname +
+//     "?bnf=" +
+//     encoded +
+//     "&name=" +
+//     tit
+//   );
+// }
 //called when "compile bnf" is clicked.
 // function bnfsubmitted() {
 //   let enteredText = getEnteredCode();
@@ -222,52 +222,52 @@ function generateSaveURL() {
 // function ontestStringChanged(obj) {
 //   validityTest();
 // }
-global.ontestStringChanged = ontestStringChanged;
-function parseTreeToNearley(data) {
-  if (data == null) {
-    return " ";
-  }
-  if (data instanceof Array) {
-    return data.reduce((acc, x) => acc + parseTreeToNearley(x), "");
-  }
-  if (typeof data == "object" && data.type) {
-    if (data.type == "rule") {
-      return (
-        parseTreeToNearley(data.value.nonterminal).trim() +
-        " ->" +
-        parseTreeToNearley(data.value.rulebody)
-      );
-    }
-    if (data.type == "case") {
-      return parseTreeToNearley(data.value);
-    }
-    if (data.type == "terminal") {
-      if (typeof data.value == "string") {
-        return ' "' + data.value + '"';
-      } else {
-        return parseTreeToNearley(data.value);
-      }
-    }
-    if (data.type == "nonterminal") {
-      return " " + parseTreeToNearley(data.value);
-    } //SPACE
-    if (data.type == "newline") {
-      return "\n";
-    }
-    if (data.type == "regex") {
-      return " " + data.value;
-    }
-    if (data.type == "ident") {
-      return data.value;
-    }
-    if (data.type == "esym") {
-      return ":" + data.value;
-    }
-  }
-  // if(typeof data == "string"){return " " + data}
-  console.log("unhandled case:", data, "appending anyway");
-  return "" + data;
-}
+// global.ontestStringChanged = ontestStringChanged;
+// function parseTreeToNearley(data) {
+//   if (data == null) {
+//     return " ";
+//   }
+//   if (data instanceof Array) {
+//     return data.reduce((acc, x) => acc + parseTreeToNearley(x), "");
+//   }
+//   if (typeof data == "object" && data.type) {
+//     if (data.type == "rule") {
+//       return (
+//         parseTreeToNearley(data.value.nonterminal).trim() +
+//         " ->" +
+//         parseTreeToNearley(data.value.rulebody)
+//       );
+//     }
+//     if (data.type == "case") {
+//       return parseTreeToNearley(data.value);
+//     }
+//     if (data.type == "terminal") {
+//       if (typeof data.value == "string") {
+//         return ' "' + data.value + '"';
+//       } else {
+//         return parseTreeToNearley(data.value);
+//       }
+//     }
+//     if (data.type == "nonterminal") {
+//       return " " + parseTreeToNearley(data.value);
+//     } //SPACE
+//     if (data.type == "newline") {
+//       return "\n";
+//     }
+//     if (data.type == "regex") {
+//       return " " + data.value;
+//     }
+//     if (data.type == "ident") {
+//       return data.value;
+//     }
+//     if (data.type == "esym") {
+//       return ":" + data.value;
+//     }
+//   }
+//   // if(typeof data == "string"){return " " + data}
+//   console.log("unhandled case:", data, "appending anyway");
+//   return "" + data;
+// }
 
 // function initState() {
 //   let state = {};
@@ -394,35 +394,35 @@ function parseTreeToNearley(data) {
 // initializeBNFEditor();
 // console.log("main has loaded!!!");
 
-function loadGetBNF() {
-  let ustr = window.location.href;
-  let url = new URL(ustr);
-  let bnf = url.searchParams.get("bnf");
-  let tit = url.searchParams.get("name");
-  if (bnf) {
-    console.log("bnf is here! it should be: ", decodeURIComponent(bnf));
-    setEnteredCode(decodeURIComponent(bnf));
-    setGrammarName(tit ? tit : "");
-  }
-  console.log(bnf);
-}
-function onSaveToURL() {
-  if (bnfsubmitted()) {
-    let url = generateSaveURL();
-    console.log(url);
-    document.getElementById("urloutput").value = url;
-  }
-}
-global.onSaveToURL = onSaveToURL;
-loadGetBNF();
+// function loadGetBNF() {
+//   let ustr = window.location.href;
+//   let url = new URL(ustr);
+//   let bnf = url.searchParams.get("bnf");
+//   let tit = url.searchParams.get("name");
+//   if (bnf) {
+//     console.log("bnf is here! it should be: ", decodeURIComponent(bnf));
+//     setEnteredCode(decodeURIComponent(bnf));
+//     setGrammarName(tit ? tit : "");
+//   }
+//   console.log(bnf);
+// }
+// function onSaveToURL() {
+//   if (bnfsubmitted()) {
+//     let url = generateSaveURL();
+//     console.log(url);
+//     document.getElementById("urloutput").value = url;
+//   }
+// }
+// global.onSaveToURL = onSaveToURL;
+// loadGetBNF();
 
 //-------------GET SET
-function setGrammarName(str) {
-  document.getElementById("grammartitle").value = str;
-}
-function getGrammarName() {
-  return document.getElementById("grammartitle").value;
-}
+// function setGrammarName(str) {
+//   document.getElementById("grammartitle").value = str;
+// }
+// function getGrammarName() {
+//   return document.getElementById("grammartitle").value;
+// }
 // function getGenerationRate() {
 //   return 0.7;
 // }
@@ -435,10 +435,10 @@ function getGrammarName() {
 // function setEnteredCode(str) {
 //   editor.doc.setValue(str);
 // }
-function getTestString() {
-  return document.getElementById("testinput").value;
-}
-function setBNFError(str) {
-  document.getElementById("bnferror").innerHTML =
-    "<pre>" + str.replace(/</g, "&lt").replace(/>/g, "&gt") + "</pre>";
-}
+// function getTestString() {
+//   return document.getElementById("testinput").value;
+// }
+// function setBNFError(str) {
+//   document.getElementById("bnferror").innerHTML =
+//     "<pre>" + str.replace(/</g, "&lt").replace(/>/g, "&gt") + "</pre>";
+// }

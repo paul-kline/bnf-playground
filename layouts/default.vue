@@ -2,7 +2,14 @@
   <v-app dark>
     <v-app-bar fixed app>
       <!-- <v-toolbar-title> BNF Playground</v-toolbar-title> -->
-      <v-toolbar-title style="min-width:8em;"> BNF Playground</v-toolbar-title
+      <!-- <Icon /> -->
+      <v-img
+        class="mr-2"
+        lazy-src="/apple-touch-icon.png"
+        max-width="60"
+        src="/apple-touch-icon.png"
+      ></v-img>
+      <v-toolbar-title style="min-width:5.5em;">Playground</v-toolbar-title
       ><v-divider class="mx-4" vertical></v-divider>
       <v-tabs>
         <v-tab to="/">Editor</v-tab>
@@ -42,7 +49,8 @@
 <script>
 import examples from "~/ts/examples.ts";
 import { Vue, Component, Prop } from "vue-property-decorator";
-@Component
+import Icon from "~/components/icon.vue";
+@Component({ components: { Icon } })
 export default class DefaultClass extends Vue {
   items = examples;
   get home() {
