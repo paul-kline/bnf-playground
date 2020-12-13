@@ -4,7 +4,7 @@ export default {
   googleAnalytics: {
     // Options
     id:'ca-pub-0366164249167912'
-  }
+  },
   // Disable server-side rendering (https://go.nuxtjs.dev/ssr-mode)
   ssr: false,
 
