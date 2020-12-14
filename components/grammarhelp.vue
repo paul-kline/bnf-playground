@@ -8,7 +8,7 @@
           <li>non-terminals must be enclosed in brackets <span class="code">&lt;nonterminal&gt;</span></li>
           <li>Terminals must be surrounded in <span class="code">"quotes"</span>.</li>
           <li>At least one space is necessary between tokens. For example, <span class="code">&lt;nonterminal&gt;::=...</span> is INVALID. You must have at least one space surrounding <span class="code">'::='</span> i.e. <span class="code">&lt;nonterminal&gt; ::= ...</span></li>
-          <li>Comments: Only c++ multi-line style comments are currently supported: <span class="code">/* interesting comment about something here */</span></li>
+          <li>Comments: Only c++ multi-line style comments are currently supported and must begin and end on its own line: <span class="code">/* interesting comment about something here */</span></li>
       </ul>
   </p>
   <p><strong>Syntactic Sugar:</strong>
