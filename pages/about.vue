@@ -21,6 +21,8 @@
       his git project
       <a target="_blank" href="https://github.com/cemulate/nearley-generator"
         >here</a
+      >. The code editor is provided by
+      <a target="_blank" href="https://codemirror.net/index.html">CodeMirror</a
       >.
       <p class="mt-2">
         The source code can be viewed
