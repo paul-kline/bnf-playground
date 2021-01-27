@@ -1,5 +1,5 @@
 # bnf-playground2
-
+This project is being hosted here: http://bnfplayground.pauliankline.com
 ## Build Setup
 
 ```bash
