@@ -72,6 +72,12 @@ terminal -> terminalstr {% function(d) {
              value : d[0]
            };
     } 
+%} | "E"  {% function(d) {
+    return {
+             type : "terminal",
+             value : null
+           };
+    } 
 %} 
 
 terminalstr -> "\"" validterminal:+  "\"" {% function(d) {return d[1].join(""); } %} #| "'" (validterminal  ):+  "'" {% function(d) {return d[1].join(""); } %}

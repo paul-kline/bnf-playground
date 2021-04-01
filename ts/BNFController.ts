@@ -150,6 +150,9 @@ export default class BNFController {
         if (typeof tree.value == "string") {
           this.state.nearley += ' "' + tree.value + '"';
           return this.state;
+        } else if (tree.value === null) {
+          this.state.nearley += " null ";
+          return this.state;
         } else {
           return this.parseTreeToNearley2(tree.value);
         }
