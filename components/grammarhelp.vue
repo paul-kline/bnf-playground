@@ -8,6 +8,7 @@
           <li>non-terminals must be enclosed in brackets <span class="code">&lt;nonterminal&gt;</span></li>
           <li>Terminals must be surrounded in <span class="code">"quotes"</span>.</li>
           <li>At least one space is necessary between tokens. For example, <span class="code">&lt;nonterminal&gt;::=...</span> is INVALID. You must have at least one space surrounding <span class="code">'::='</span> i.e. <span class="code">&lt;nonterminal&gt; ::= ...</span></li>
+          <li>Epsilon (which matches nothing) can be sybolized by a capital E. For example, <span class="code">&lt;very&gt; ::= E | "very" &lt;very&gt; </span> matches zero or more "very"s in a row, such as veryveryvery (though 'zero or more' can be written more easily using the EBNF '*'). WARNING: Be careful using the epsilon rule. You can easily cause an internal infinite loop that causes the page to become unresponsive. For example, if your BNF in anyway simplifies to E*, compiling will cause an infinite loop and you will have to kill the page and lose any unsaved progress.</li>
           <li>Comments: Only c++ multi-line style comments are currently supported and must begin and end on its own line: <span class="code">/* interesting comment about something here */</span></li>
       </ul>
   </p>
