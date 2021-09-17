@@ -128,12 +128,12 @@ export default class Editor extends Vue {
   loadGetBNF() {
     let ustr = window.location.href;
     let url = new URL(ustr);
-    let bnf = url.searchParams.get("bnf");
+    let bnf = url.searchParams.get("bnf"); // Already URI decoded
     let tit = url.searchParams.get("name");
     if (bnf) {
-      console.log("bnf is here! it should be: ", decodeURIComponent(bnf));
-      // setEnteredCode(decodeURIComponent(bnf));
-      this.editor.getDoc().setValue(decodeURIComponent(bnf));
+      console.log("bnf is here! it should be: ", bnf);
+      // setEnteredCode(bnf);
+      this.editor.getDoc().setValue(bnf);
       this.title = tit ? tit : "";
     }
     console.log(bnf);
