@@ -24,7 +24,7 @@
     "core-js": "^3.6.5",
     "nearley": "^2.19.9",
     "nearley-generator": "^1.0.3",
-    "nuxt": "^2.14.6",
+    "nuxt": "^2.2.0",
     "vue-class-component": "^7.2.6",
     "vue-property-decorator": "^9.1.2"
   },

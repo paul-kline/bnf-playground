@@ -1,39 +1,41 @@
-import colors from 'vuetify/es5/util/colors'
-import myicon from './components/icon.vue'
+import colors from "vuetify/es5/util/colors";
+// import myicon from './components/icon.vue'
 export default {
   googleAnalytics: {
     // Options
-    id:'ca-pub-0366164249167912'
+    id: "ca-pub-0366164249167912"
   },
   // Disable server-side rendering (https://go.nuxtjs.dev/ssr-mode)
   ssr: false,
 
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
-    titleTemplate: '%s',
-    title: 'BNF Playground',
+    titleTemplate: "%s",
+    title: "BNF Playground",
     meta: [
-      { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: 'Define and Test BNF or EBNF definitions as well as randomly generate valid strings.' },
-      {name:"author", content:"Paul Kline"},
-      {name:"keywords", content:"online BNF parser,online EBNF parser,Backus Naur Form, Extended Backus Naur Form, online BNF code editor, BNF playground,online EBNF interpreter"}
-
-
-      
+      { charset: "utf-8" },
+      { name: "viewport", content: "width=device-width, initial-scale=1" },
+      {
+        hid: "description",
+        name: "description",
+        content:
+          "Define and Test BNF or EBNF definitions as well as randomly generate valid strings."
+      },
+      { name: "author", content: "Paul Kline" },
+      {
+        name: "keywords",
+        content:
+          "online BNF parser,online EBNF parser,Backus Naur Form, Extended Backus Naur Form, online BNF code editor, BNF playground,online EBNF interpreter"
+      }
     ],
-    link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
-    ]
+    link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }]
   },
 
   // Global CSS (https://go.nuxtjs.dev/config-css)
-  css: [
-  ],
+  css: [],
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
-  plugins: [
-  ],
+  plugins: [],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
   components: true,
@@ -41,18 +43,18 @@ export default {
   // Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)
   buildModules: [
     // https://go.nuxtjs.dev/typescript
-    '@nuxt/typescript-build',
+    "@nuxt/typescript-build",
     // https://go.nuxtjs.dev/vuetify
-    '@nuxtjs/vuetify',
-    '@nuxtjs/google-analytics'
+    "@nuxtjs/vuetify",
+    "@nuxtjs/google-analytics"
   ],
 
   // Modules (https://go.nuxtjs.dev/config-modules)
   modules: [
     // https://go.nuxtjs.dev/axios
-    '@nuxtjs/axios',
+    "@nuxtjs/axios",
     // https://go.nuxtjs.dev/pwa
-    '@nuxtjs/pwa',
+    "@nuxtjs/pwa"
   ],
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
@@ -60,7 +62,7 @@ export default {
 
   // Vuetify module configuration (https://go.nuxtjs.dev/config-vuetify)
   vuetify: {
-    customVariables: ['~/assets/variables.scss'],
+    customVariables: ["~/assets/variables.scss"],
     theme: {
       dark: true,
       themes: {
@@ -81,11 +83,10 @@ export default {
   // build: {
   // }
   build: {
-    extend (config, { isDev, isClient }) {
-  
-       config.node= {
-          fs: 'empty'
-        }
+    extend(config, { isDev, isClient }) {
+      config.node = {
+        fs: "empty"
+      };
     }
   }
-}
+};
