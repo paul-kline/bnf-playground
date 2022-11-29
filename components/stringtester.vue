@@ -12,6 +12,10 @@
         @change="triggerSelection"
       ></v-select>
     </div>
+    <div class="d-flex align-baseline mb-0 pb-0">
+      <div>Ignore white spaces:</div>
+      <input type="checkbox" v-model="ignoreSpaces"/>
+    </div>
     <v-textarea
       class="mb-0 pb-0"
       outlined
@@ -36,8 +40,8 @@
   </div>
 </template>
 <script lang="ts">
-import { Vue, Component, Prop } from "vue-property-decorator";
-import BNFController, { compilationStatus } from "~/ts/BNFController.ts";
+import { Vue, Component } from "vue-property-decorator";
+import BNFController from "~/ts/BNFController.ts";
 import testinghelp from "~/components/testinghelp.vue";
 const _bnf = BNFController.getInstance();
 @Component({ components: { testinghelp } })
@@ -45,6 +49,7 @@ export default class StringTester extends Vue {
   bnf = _bnf;
   str: string = "";
   selection: string = "";
+  ignoreSpaces: boolean = false;
   get items() {
     return this.bnf.nonTerminals.map(x => "<" + x + ">");
   }
@@ -77,7 +82,8 @@ export default class StringTester extends Vue {
     }
   }
   get isError(): boolean {
-    return this.str.length > 0 && !this.bnf.validityTest(this.str);
+    const testString = this.ignoreSpaces ? this.str.replace(/ /, "") : this.str;
+    return this.str.length > 0 && !this.bnf.validityTest(testString);
   }
   get bgColor(): string {
     if (!this.str) {
